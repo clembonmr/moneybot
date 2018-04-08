@@ -12,6 +12,25 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(transaction_params)
+    @transaction.user = current_user
+    if @transaction.save
+      redirect_to transactions_path
+    else
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @transaction.update(transaction_params)
+    redirect_to transactions_path
+  end
+
+  def destroy
+    @transaction.delete
+    redirect_to transactions_path
   end
 
 
