@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180407090948) do
+ActiveRecord::Schema.define(version: 20180410132715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(version: 20180407090948) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tags_transactions", id: false, force: :cascade do |t|
+    t.bigint "transaction_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["tag_id"], name: "index_tags_transactions_on_tag_id"
+    t.index ["transaction_id"], name: "index_tags_transactions_on_transaction_id"
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.string "title"
     t.float "amount"
@@ -45,10 +52,8 @@ ActiveRecord::Schema.define(version: 20180407090948) do
     t.datetime "updated_at", null: false
     t.bigint "account_id"
     t.bigint "category_id"
-    t.bigint "tag_id"
     t.index ["account_id"], name: "index_transactions_on_account_id"
     t.index ["category_id"], name: "index_transactions_on_category_id"
-    t.index ["tag_id"], name: "index_transactions_on_tag_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,5 +76,4 @@ ActiveRecord::Schema.define(version: 20180407090948) do
   add_foreign_key "accounts", "users"
   add_foreign_key "transactions", "accounts"
   add_foreign_key "transactions", "categories"
-  add_foreign_key "transactions", "tags"
 end
