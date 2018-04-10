@@ -19,3 +19,17 @@ puts "///   Deleting all accounts"
 Account.destroy_all
 puts "///   Deleting all users"
 User.destroy_all
+
+
+puts "///   Creating users"
+4.times do
+  user = User.new(
+    email: Faker::Internet.free_email,
+    password: Faker::Internet.password(8),
+    username: Faker::Name.first_name)
+  if user.save
+    puts user.username + " created!"
+  end
+end
+
+puts "///   #{User.count} users in the database!"
