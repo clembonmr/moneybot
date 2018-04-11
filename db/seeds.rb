@@ -33,3 +33,73 @@ puts "///   Creating users"
 end
 
 puts "///   #{User.count} users in the database!"
+
+puts "///   Creating accounts"
+10.times do
+  account = Account.new(
+    user_id: User.all.sample.id,
+    name: "Account Bank #{rand(1..10)}")
+  if account.save
+    puts account.name + " created!"
+  end
+end
+
+puts "///   #{Account.count} accounts in the database!"
+
+
+
+puts "///   Creating categories"
+categorie1 = Category.new(name: "Food")
+if categorie1.save
+  puts categorie1.name + " created!"
+end
+categorie2 = Category.new(name: "Travel")
+if categorie2.save
+  puts categorie2.name + " created!"
+end
+categorie3 = Category.new(name: "Transports")
+if categorie3.save
+  puts categorie3.name + " created!"
+end
+categorie4 = Category.new(name: "Telecom")
+if categorie4.save
+  puts categorie4.name + " created!"
+end
+
+puts "///   #{Category.count} categories in the database!"
+
+
+
+puts "///   Creating tags"
+tag1 = Tag.new(name: "Holiday 2017")
+if tag1.save
+  puts tag1.name + " created!"
+end
+tag2 = Tag.new(name: "Appart Marais")
+if tag2.save
+  puts tag2.name + " created!"
+end
+
+
+puts "///   #{Tag.count} tags in the database!"
+
+
+
+
+puts "///   Creating operations"
+100.times do
+  operation = Operation.new(
+    account_id: Account.all.sample.id,
+    category_id: Category.all.sample.id,
+    title: Faker::Lorem.sentence(2, true, 1),
+    amount: rand(10..100),
+    date: (Date.today + (rand(10..20)).days),
+    approved: false,
+    note: Faker::Lorem.sentence(6, true, 2)
+    )
+  if operation.save
+    puts operation.title + " created!"
+  end
+end
+
+puts "///   #{Operation.count} operations in the database!"

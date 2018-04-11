@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20180410142852) do
   create_table "operations", force: :cascade do |t|
     t.string "title"
     t.float "amount"
-    t.string "date"
+    t.date "date"
     t.boolean "approved"
     t.text "note"
     t.datetime "created_at", null: false

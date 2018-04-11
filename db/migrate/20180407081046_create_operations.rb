@@ -3,7 +3,7 @@ class CreateOperations < ActiveRecord::Migration[5.1]
     create_table :operations do |t|
       t.string :title
       t.float :amount
-      t.string :date
+      t.date :date
       t.boolean :approved
       t.text :note
 
