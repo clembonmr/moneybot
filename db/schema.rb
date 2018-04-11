@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410132715) do
+ActiveRecord::Schema.define(version: 20180410142852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,31 +29,31 @@ ActiveRecord::Schema.define(version: 20180410132715) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tags_transactions", id: false, force: :cascade do |t|
-    t.bigint "transaction_id", null: false
-    t.bigint "tag_id", null: false
-    t.index ["tag_id"], name: "index_tags_transactions_on_tag_id"
-    t.index ["transaction_id"], name: "index_tags_transactions_on_transaction_id"
-  end
-
-  create_table "transactions", force: :cascade do |t|
+  create_table "operations", force: :cascade do |t|
     t.string "title"
     t.float "amount"
-    t.string "date"
+    t.date "date"
     t.boolean "approved"
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "account_id"
     t.bigint "category_id"
-    t.index ["account_id"], name: "index_transactions_on_account_id"
-    t.index ["category_id"], name: "index_transactions_on_category_id"
+    t.index ["account_id"], name: "index_operations_on_account_id"
+    t.index ["category_id"], name: "index_operations_on_category_id"
+  end
+
+  create_table "operations_tags", id: false, force: :cascade do |t|
+    t.bigint "operation_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["operation_id"], name: "index_operations_tags_on_operation_id"
+    t.index ["tag_id"], name: "index_operations_tags_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,11 +69,12 @@ ActiveRecord::Schema.define(version: 20180410132715) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "accounts", "users"
-  add_foreign_key "transactions", "accounts"
-  add_foreign_key "transactions", "categories"
+  add_foreign_key "operations", "accounts"
+  add_foreign_key "operations", "categories"
 end
