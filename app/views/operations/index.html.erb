@@ -1,0 +1,23 @@
+
+
+<div class="mainwrapper">
+  <div class="container">
+    <div class="row">
+      <div class="
+        col-xs-12
+        col-md-8 col-md-offset-2
+        ">
+        <% @operations.each do |operation| %>
+          <div class="operation-container">
+            <div>
+              <%= operation.title %>
+            </div>
+            <div>
+              <%= operation.amount %>
+            </div>
+          </div> <!-- closing operation container -->
+        <% end %>
+      </div> <!-- closing col -->
+    </div> <!-- closing row -->
+  </div> <!-- closing container -->
+</div> <!-- closing mainwrapper -->
