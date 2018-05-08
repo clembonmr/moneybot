@@ -1,5 +1,8 @@
 
 .operation-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 80px;
   background-color: white;
   margin: 10px 0;

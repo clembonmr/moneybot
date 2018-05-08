@@ -4,17 +4,26 @@
   <div class="container">
     <div class="row">
       <div class="
-        col-xs-12
-        col-md-8 col-md-offset-2
-        ">
+        col-xs-12 col-md-8 col-md-offset-2">
         <% @operations.each do |operation| %>
           <div class="operation-container">
-            <div>
+
+            <div class="op-category-container">
+              <%= operation.category.name %>
+            </div>
+
+
+            <div class="op-date-container">
+              <%= operation.date %>
+            </div>
+
+            <div class="op-title-container">
               <%= operation.title %>
             </div>
-            <div>
+            <div class="op-amount-container">
               <%= operation.amount %>
             </div>
+
           </div> <!-- closing operation container -->
         <% end %>
       </div> <!-- closing col -->
