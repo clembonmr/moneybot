@@ -1,5 +1,6 @@
 
 .operation-container {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,4 +9,27 @@
   margin: 10px 0;
   border-radius: 6px;
   padding: 4px 8px;
+  box-shadow: 0 2px 13px 0 rgba(0,0,0,0.03), 0 1px 2px 0 rgba(0,0,0,0.02);
+}
+
+.op-category-container {
+  position: absolute;
+  width: 8px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.op-date-container {
+  flex: 0 1 40px;
+}
+
+.op-title-container {
+  flex: 0 1 200px;
+}
+
+.op-amount-container {
+  flex: 0 1 60px;
 }

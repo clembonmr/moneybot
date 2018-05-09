@@ -49,19 +49,19 @@ puts "///   #{Account.count} accounts in the database!"
 
 
 puts "///   Creating categories"
-categorie1 = Category.new(name: "Food")
+categorie1 = Category.new(name: "Food", color: "#B4EED5")
 if categorie1.save
   puts categorie1.name + " created!"
 end
-categorie2 = Category.new(name: "Travel")
+categorie2 = Category.new(name: "Travel", color: "#C6B4EE")
 if categorie2.save
   puts categorie2.name + " created!"
 end
-categorie3 = Category.new(name: "Transports")
+categorie3 = Category.new(name: "Transports", color: "#B4DCEE")
 if categorie3.save
   puts categorie3.name + " created!"
 end
-categorie4 = Category.new(name: "Telecom")
+categorie4 = Category.new(name: "Telecom", color: "#E2EEB4")
 if categorie4.save
   puts categorie4.name + " created!"
 end
