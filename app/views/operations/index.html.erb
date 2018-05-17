@@ -1,5 +1,10 @@
 
 
+<h1>Test API</h1>
+<%= TestApi.new.auth_end_user %>
+
+
+
 <div class="mainwrapper">
   <div class="container">
     <div class="row">
@@ -8,7 +13,7 @@
         <% @operations.each do |operation| %>
           <div class="operation-container">
 
-            <div class="op-category-container" style="background-color: <%= operation.category.color %>">
+         <!--    <div class="op-category-container" style="background-color: <%= operation.category.color %>">
 
             </div>
 
@@ -22,7 +27,7 @@
             </div>
             <div class="op-amount-container">
               <%= operation.amount %>
-            </div>
+            </div> -->
 
           </div> <!-- closing operation container -->
         <% end %>
