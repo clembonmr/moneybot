@@ -1,5 +1,5 @@
 class OperationsController < ApplicationController
-
+  require_relative 'drafts/test_dbs_api'
   before_action :set_operation, only: [:show, :edit, :update, :destroy]
 
   def index
