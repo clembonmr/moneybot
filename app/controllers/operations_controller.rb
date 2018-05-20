@@ -1,9 +1,12 @@
 class OperationsController < ApplicationController
-  require_relative 'drafts/test_dbs_api'
+  require_relative '../services/test_dbs_api'
   before_action :set_operation, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @operations = Operation.all
+    @test_dbs_api = TestApi.new
+    @auth_url = @test_dbs_api.dbs_auth_url
   end
 
   def new

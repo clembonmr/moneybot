@@ -3,7 +3,8 @@
 <h1>Test API</h1>
 
 
-<a href="<%= TestApi.new.dbs_auth_url %>">Authentification</a>
+<a href="<%= @auth_url %>">Authentification</a>
+<p><%=  params[:code] %></p>
 
 
 <div class="mainwrapper">
