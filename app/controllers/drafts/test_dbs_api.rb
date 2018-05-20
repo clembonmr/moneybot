@@ -1,5 +1,6 @@
 require 'rest-client'
 require 'json'
+require 'uri'
 
 
 class TestApi
@@ -10,9 +11,12 @@ class TestApi
   end
 
   def dbs_auth_url
-    # url_auth = "https://www.dbs.com/sandbox/api/sg/v1/oauth/authorize?client_id=#{@client_id}&redirect_uri=http%3A%2F%2F0.0.0.0%3A3000%2Foperations&scope=Read&response_type=code&state=0399"
+    # generating authorization URL
 
-    # return url_auth
+    URI.encode_www_form_component("http://0.0.0.0:3000/operations")
+    url_auth = "https://www.dbs.com/sandbox/api/sg/v1/oauth/authorize?client_id=#{@client_id}&redirect_uri=http%3A%2F%2F0.0.0.0%3A3000%2Foperations&scope=Read&response_type=code&state=0399"
+
+    return url_auth
 
     response = RestClient::Request.execute(
     method: :get,
