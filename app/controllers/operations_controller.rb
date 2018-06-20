@@ -7,6 +7,8 @@ class OperationsController < ApplicationController
     @operations = Operation.all
     @test_dbs_api = TestApi.new
     @auth_url = @test_dbs_api.dbs_auth_url
+    @grab_dbs_auth_code = params.require(:code)
+    @access_token = @test_dbs_api.generate_access_token
   end
 
   def new

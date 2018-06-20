@@ -16,20 +16,18 @@ class TestApi
     redirect_url = URI.encode_www_form_component("http://0.0.0.0:3000/operations")
     url_auth = "https://www.dbs.com/sandbox/api/sg/v1/oauth/authorize?client_id=#{@client_id}&redirect_uri=#{redirect_url}&scope=Read&response_type=code&state=0399"
     return url_auth
-    # response = RestClient::Request.execute(
-    # method: :get,
-    # url: 'https://www.dbs.com/sandbox/api/sg/v1/oauth/authorize',
-    # headers: {
-    #   client_id: @client_id,
-    #     redirect_uri: 'http://0.0.0.0:3000/operations',
-    #     scope: 'Read',
-    #     response_type: 'code',
-    #     state: '0399'
-    # })
   end
 
-  def grab_dbs_auth_code
-    params.require[:code]
+
+  def generate_access_token
+    response = RestClient.post(
+      'https://www.dbs.com/sandbox/api/sg/v1/oauth/tokens',
+      code: @grab_dbs_auth_code,
+      redirect_uri: URI.encode_www_form_component("http://0.0.0.0:3000/operations"),
+      grant_type: 'token',
+      headers: {
+        Authorization: 'Basic'
+      })
   end
 
 end

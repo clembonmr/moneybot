@@ -4,7 +4,8 @@
 
 
 <a href="<%= @auth_url %>">Authentification</a>
-<p><%=  params[:code] %></p>
+<p><%=  @grab_dbs_auth_code %></p>
+<p>Access token: </p> <%= @access_token %>
 
 
 <div class="mainwrapper">
