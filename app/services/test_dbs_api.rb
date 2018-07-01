@@ -20,14 +20,22 @@ class TestApi
 
 
   def generate_access_token(auth_code)
-    response = RestClient.post
-      'https://www.dbs.com/sandbox/api/sg/v1/oauth/tokens'
-      {code: auth_code,
+    response = RestClient::Request.execute({
+      method: :post,
+      url: 'https://www.dbs.com/sandbox/api/sg/v1/oauth/tokens',
+      payload: {code: auth_code,
       redirect_uri: URI.encode_www_form_component("http://0.0.0.0:3000/operations"),
-      grant_type: 'token'}
+      grant_type: 'token'},
       headers: {
-        Authorization: 'Basic'
+        Authorization: "Basic #{encode64(@client_id,@client_secret)}"
       }
+      })
+  end
+
+  private
+
+  def encode64(client_id, client_secret)
+    Base64.encode64("#{client_id}:#{client_secret}")
   end
 
 end
